@@ -1,0 +1,1 @@
+sea arkadaşlar okusanız yeterli napim
