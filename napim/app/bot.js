@@ -152,4 +152,79 @@ client.on("guildMemberAdd", member => {
    hg.send(embedd)   
      hg.send(kayıtcı) 
   });
+//----------------------Embedsiz welcome-----------------------//
+client.on("guildMemberAdd", async (member) => {
+moment.locale("tr");
+let kanal = client.channels.cache.get("Welcome kanal id")
+await kanal.send(`${member} **Sunucumuza Hoşgeldin**
+
+**Seninle Birlikte ${member.guild.memberCount} kişi olduk**
+**Kayıt Olmak için <&Register rol id> yetkililerine teyit vermen gerekir.**
+**Tagımızı (TAG) alarak bizlere destek olabilir, ailemize katılabilirsin.**
+**Sunucumuzda keyifli vakitler geçirmeni dileriz.**
+<#Kurallarkanalid> **kanalından kurallarımızı okumayı unutma.**
+ `).catch(e => console.log(e))//hangisini kullanacaksanız diğerini silip kullanın ve intentleri açmayı unutmayın <3
+}); 
+ //----------------------Embedsiz welcome-----------------------//
+client.on("message", message => {
+    if(message.content.toLowerCase() == "!tag") 
+    return message.channel.send(`Tagınız`)
+});
+client.on("message", message => {
+    if(message.content.toLowerCase() == ".tag") 
+    return message.channel.send(`Tagınız`)
+});
+
+client.on("message", message => {
+    if(message.content.toLowerCase() == "tag") 
+    return message.channel.send(`Tagınız`)
+});
+//-------------------------------------------------------------//
+
+client.on("userUpdate", async (lol, yeni) => {
+  var sunucu = client.guilds.cache.get('SUNUCUID'); // Buraya Sunucu ID
+  var uye = sunucu.members.cache.get(yeni.id);
+  var ekipTag = "TAG"; // Buraya Ekip Tag
+  var rolls = "ROL ID"; // Buraya Ekip Rolünün ID
+  var logKanali = "LOG ID"; // Loglanacağı Kanalın ID
+
+  if (!sunucu.members.cache.has(yeni.id) || yeni.bot || lol.username === yeni.username) return;
+
+  if ((yeni.username).includes(ekipTag) && !uye.roles.cache.has(rolls)) {
+    try {
+      await uye.roles.add(rolls);
+      await uye.send(`Tagımızı aldığın için teşekkürler! Aramıza hoş geldin.`);
+      await client.channels.cache.get(logKanali).send(new Discord.MessageEmbed().setColor('GREEN').setDescription(`${yeni} adlı üye tagımızı alarak ailemize katıldı!`));
+    } catch (err) { console.error(err) };
+  };
+
+  if (!(yeni.username).includes(ekipTag) && uye.roles.cache.has(rolls)) {
+    try {
+      await uye.roles.remove(uye.roles.cache.filter(rol => rol.position >= sunucu.roles.cache.get(rolls).position));
+      await uye.send(`Tagımızı bıraktığın için ekip rolü ve yetkili rollerin alındı! Tagımızı tekrar alıp aramıza katılmak istersen;\nTagımız: **${ekipTag}**`);
+      await client.channels.cache.get(logKanali).send(new Discord.MessageEmbed().setColor('RED').setDescription(`${yeni} adlı üye tagımızı bıraktığı için ekip ve yetkili rolleri alındı.`));
+    } catch(err) { console.error(err) };
+  };
+});
+
+//----------------------TAG-KONTROL----------------------\\     STG
+
+client.on("guildMemberAdd", member => {
+  let sunucuid = "SUNUCUID"; //Buraya sunucunuzun IDsini yazın
+  let tag = "TAG"; //Buraya tagınızı yazın
+  let rol = "ROLID"; //Buraya tag alındığı zaman verilecek rolün IDsini yazın
+  let channel = client.guilds.cache.get(sunucuid).channels.cache.find(x => x.name == 'tag-log'); //tagrol-log yerine kendi log kanalınızın ismini yazabilirsiniz
+if(member.user.username.includes(tag)){
+member.roles.add(rol)
+  const tagalma = new Discord.MessageEmbed()
+      .setColor("GREEN")
+      .setDescription(`<@${member.id}> adlı kişi sunucumuza taglı şekilde katıldı.`)
+      .setTimestamp()
+     client.channels.cache.get('Tag log id').send(tagalma)
+}
+})
+
+
+
+
   
