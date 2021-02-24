@@ -148,7 +148,7 @@ client.on("guildMemberAdd", member => {
       const embedd = new Discord.MessageEmbed()
       .setAuthor(member.guild.name)
   .setDescription("**Hoşgeldin! <@" + member + "> Seninle \`" + member.guild.memberCount + "\` Kişiyiz.\n\nİsmini ve Yaşını yazıp Sesli odaya geçmen gerekli. \n\n<@&Kayıtcı> rolündeki yetkililer seninle ilgilenecektir. \n\nHesap Oluşturulma Tarihi : " + moment(member.user.createdAt).format("`YYYY DD MMMM dddd`") +  "\n\n"  + alibicim + "\n\nKeyifli vakit geçirmen dileğiyle :heart:**\n")
-   .setImage("https://i.pinimg.com/originals/2c/43/ac/2c43acd8c41ee853cf9fbb04960e4fa6.gif")
+   .setImage("https://tenor.com/view/yo-welcome-pohler-amy-pohler-gif-13849146")
    hg.send(embedd)   
      hg.send(kayıtcı) 
   });
