@@ -7,9 +7,7 @@ var Jimp = require('jimp');
 const { Client, Util } = require('discord.js');
 const weather = require('weather-js')
 const fs = require('fs');
-const YouTube = require("simple-youtube-api");
 const queue = new Map();
-const ffmpeg = require("ffmpeg"); //ben napim
 const express = require("express");
 
 const ytdl = require("ytdl-core");
