@@ -1,5 +1,5 @@
 const Discord = require ("discord.js")
-const db = require('quick.db')//Siz wio.db de kullanabilirsiniz
+const db = require('quick.db')
 
 exports.run  = async (client, message, args) => {
   
@@ -34,7 +34,7 @@ const zibab = new Discord.MessageEmbed()
     .addField(`Verilen Roller:`, `<@&${erkek.id}> ve <@&${erkek2.id} Rolleri Verildi`) 
     .addField(`Kayıtsız rolü:`, `<@&${kayıtsız.id}> Rolü Alındı`)
     .addField(`İsmin:`, `\`${tag} ${isim} | ${yas}\` Olarak Güncellendi`) 
-.setFooter(`Safe Code`)
+.setFooter(`Prasty Code`)
 .setColor('AQUA')
 client.channels.cache.get('Kayıt log/sohbet').send(zibab)
   
